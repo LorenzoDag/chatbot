@@ -1,0 +1,65 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - Hey
+    - Ciao
+    - Salve
+    - Buon giorno
+    - Buongiorno
+    - Buona sera
+    - Buonasera
+    - Buon pomeriggio 
+    - Ciao caro
+
+- intent: goodbye
+  examples: |
+    - Ciao, alla prossima
+    - Ciao a presto
+    - A presto
+    - Buona giornata
+    - Buona serata
+    - Arrivederci
+    - A presto
+    - Ci vediamo 
+    - Alla prossima
+    - Grazie mille, a presto
+    - Grazie, a presto
+    - Ciao e grazie
+
+- intent: affirm
+  examples: |
+    - si
+    - certo
+    - certamente
+    - sicuro
+    - sembra buono
+    - mi sembra fattibile
+    - perfetto
+    - ok
+    - ok, grazie
+    - assolutamente si
+    - va bene
+
+- intent: deny
+  examples: |
+    - no
+    - non va bene
+    - meglio di no
+    - non credo
+    - non credo
+    - assolutamente no
+
+- intent: bot_challenge
+  examples: |
+    - Sei un bot?
+    - Sei umano?
+    - sto parlando con un bot?
+    - sto parlando con un uomo?
+    - sto parlando con una persona?
+    - sto parlando con una persona umana?
+    - sto parlando con una persona umana o un bot?
+    - sto parlando con una persona umana o un robot?
+    - sei un robot?
+    - sei un uomo?

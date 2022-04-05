@@ -1,0 +1,36 @@
+version: "3.1"
+
+stories:
+
+- story: Manage bot challenge yes
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+  - intent: affirm
+  - action: utter_iamabot
+
+- story: Manage bot challenge no
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+  - intent: deny
+  - action: utter_iamnotabot
+
+- story: Manage bot challenge yes no greet
+  steps:
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+  - intent: affirm
+  - action: utter_iamabot
+
+- story: Manage bot challenge no no greet
+  steps:
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+  - intent: deny
+  - action: utter_iamnotabot
+  
