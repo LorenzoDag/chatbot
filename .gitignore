@@ -1,5 +1,6 @@
 # Useless folders
 models/
+.rasa/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
