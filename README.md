@@ -34,6 +34,16 @@ rasa train; rasa shell
   - intent: richiesta appuntamento [giorno]
   - path come sopra ma filtraggio per giorno
 
+- [] Modificare appuntamento
+  - intent: saluto (opzionale)
+  - action: saluto
+  - intent: richiesta modifica appunamento
+  - action: chiedi nominativo (form)
+  - intent: inserisci nominativo (form fill)
+  - action: cerca appuntamenti e mostra + modifica o elimina?
+  - intent: sceglie cosa fare
+  - action: fa quello che chiede l'utente
+
 - [x] Bot challenge
   - intent: sei un bot?
   - action: dipende, sai cos'è il test di turing? (torna bottoni, si, no).
