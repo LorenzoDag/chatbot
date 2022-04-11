@@ -10,6 +10,7 @@ intents:
   - intent_setta_nome
   - intent_setta_recapito
   - intent_perche_me_lo_chiedi
+  - intent_bot_challenge
 
 entities:
   - prestazione # Taglio, Shampoo, Barba ...

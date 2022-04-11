@@ -80,6 +80,19 @@ nlu:
     - che cosa?
     - per cosa?
     - a cosa ti serve?
+
+- intent: bot_challenge
+  examples: |
+    - Sei un bot?
+    - Sei umano?
+    - sto parlando con un bot?
+    - sto parlando con un uomo?
+    - sto parlando con una persona?
+    - sto parlando con una persona umana?
+    - sto parlando con una persona umana o un bot?
+    - sto parlando con una persona umana o un robot?
+    - sei un robot?
+    - sei un uomo?
   
 - lookup: prestazione
   examples: |
