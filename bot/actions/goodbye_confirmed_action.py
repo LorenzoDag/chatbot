@@ -2,6 +2,11 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+import pandas as pd
+import os.path as path
+from actions import appointmets
+from actions.utils.models import Appointment
+
 
 class GoodbyeConfirmAction(Action):
     # Viene chiamata quando il cliente conferma
@@ -31,4 +36,6 @@ class GoodbyeConfirmAction(Action):
             return f"Mi dispiace, qualcosa è andato storto. Riprova"
 
         def save_appointment(self, tracker: Tracker):
+            app = Appointment(tracker.get_slot('giorno'), tracker.get_slot('ora'), "30", tracker.get_slot('nome'), tracker.get_slot('telefono'))
+            appointmets.create(app)
             print("OK")

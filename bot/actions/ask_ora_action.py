@@ -17,7 +17,6 @@ class ActionAskOra(Action):
 
     def __init__(self) -> None:
         super().__init__()
-        self.appointments = pd.read_csv(path.join(ActionAskOra.database_dir, ActionAskOra.appointments_csv_name))
 
     def name(self) -> Text:
         return "action_ask_ora"
@@ -42,6 +41,7 @@ class ActionAskOra(Action):
 
     def get_disponibilità_oraria(self, giorno: str) -> List[str]:
         # Ottenere la disponibilità oraria per il giorno
+        self.appointments = pd.read_csv(path.join(ActionAskOra.database_dir, ActionAskOra.appointments_csv_name))
         appuntamenti_giorno = self.appointments.loc[self.appointments.Date.str.lower() == giorno]
         return self.get_free_slots(appuntamenti_giorno)
 
