@@ -20,9 +20,10 @@ class ActionCercaPosto(FormValidationAction):
             tracker: Tracker,
             domain: DomainDict,
         ) -> Dict[Text, Any]:
-        
-        if slot_value.lower() in ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì"]:
-            return {"giorno": slot_value}
+
+        for day in ["lun", "mar", "mer", "gio", "ven"]:
+            if day in slot_value.lower():
+                return {"giorno": slot_value}
         else:
             dispatcher.utter_message(text = f"Mi dispiace ma {slot_value} non lavoriamo. Che giorno preferisci?")
             return {"giorno": None}

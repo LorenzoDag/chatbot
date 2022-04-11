@@ -55,3 +55,12 @@ rules:
   - action: utter_mi_serve
   - action: form_prenotatione
   - active_loop: form_prenotatione
+
+- rule: l'utente non vuole dare informazioni ma usa frasi interpretate come intent_annulla
+  condition:
+  - active_loop: form_prenotatione
+  steps:
+  - intent: intent_conferma
+  - action: utter_mi_serve
+  - action: form_prenotatione
+  - active_loop: form_prenotatione

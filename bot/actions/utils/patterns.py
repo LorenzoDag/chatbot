@@ -1,5 +1,6 @@
+from typing import List
 from actions.utils.models import Appointment
-from actions.utils import database_path
+from actions.utils import appointment_path
 import pandas as pd
 
 class Dao:
@@ -15,16 +16,35 @@ class Dao:
     def delete(self, name: str, hour: str, date: str):
         raise NotImplementedError()
 
+import threading
 
-class AppointmentDao(Dao):
+
+# Based on tornado.ioloop.IOLoop.instance() approach.
+# See https://github.com/facebook/tornado
+class Singleton(object):
+	__singleton_lock = threading.Lock()
+	__singleton_instance = None
+
+	@classmethod
+	def instance(cls):
+		if not cls.__singleton_instance:
+			with cls.__singleton_lock:
+				if not cls.__singleton_instance:
+					cls.__singleton_instance = cls()
+		return cls.__singleton_instance
+
+
+class AppointmentDao(Dao, Singleton):
     def __init__(self):
-        self.appointments = [Appointment(row['date'], row['hour'], row['duration_min'], row['name'], row['contact']) for _, row in pd.read_csv(database_path) ]
+        self.appointments = [Appointment(row['date'], row['hour'], row['duration_min'], row['name'], row['contact']) \
+            for _, row in pd.read_csv(appointment_path).iterrows() ]
+        self.c = 1
 
     def create(self, Obj: Appointment) -> bool:
         if Obj in self.appointments:
             return False
         self.appointments.append(Obj)
-        with open(database_path, 'a') as f:
+        with open(appointment_path, 'a') as f:
             f.write(f"{Obj.date},{Obj.hour},{Obj.duration_min},{Obj.name},{Obj.contact}\n")
         return True
 
@@ -41,8 +61,6 @@ class AppointmentDao(Dao):
                 return Obj
         return None
 
-
-
     def delete(self, name: str, hour: str, date: str ) -> Appointment:
         for idx, app in enumerate(self.appointments):
             if app.name == name and app.hour == hour and app.date == date:
@@ -50,6 +68,14 @@ class AppointmentDao(Dao):
                 return self.appointments.pop(idx)
         return None
 
+    def get_free_slots(self, working_hours: List[List[int]]) -> List[str]:
+        pass
+
     def _save(self):
         df = pd.DataFrame([app.to_dict() for app in self.appointments])
-        df.to_csv(database_path, index=False)
+        df.to_csv(appointment_path, index=False)
+
+    def _debug(self, stringa: str = "NULL"):
+        print(f"IM HERE! from {stringa}")
+        print(self.c)
+        self.c += 1
