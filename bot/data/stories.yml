@@ -1,36 +1,29 @@
 version: "3.1"
 
 stories:
+# - story: l'utente non vuole dare il suo nome
+#   steps:
+#   - action: form_prenotatione
+#   - slot_was_set:
+#     - requested_slot: nome
+#   - intent: intent_perche_me_lo_chiedi
+#   - action: utter_mi_serve_nome
+#   - action: form_prenotatione
+#   - active_loop: form_prenotatione
 
-- story: Manage bot challenge yes
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: bot_challenge
-  - action: utter_bot_challenge
-  - intent: affirm
-  - action: utter_iamabot
+# - story: l'utente non vuole dare il suo recapito
+#   steps:
+#   - action: form_prenotatione
+#   - slot_was_set:
+#     - requested_slot: recapito
+#   - intent: intent_perche_me_lo_chiedi
+#   - action: utter_mi_serve_recapito
+#   - action: form_prenotatione
+#   - active_loop: form_prenotatione
 
-- story: Manage bot challenge no
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: bot_challenge
-  - action: utter_bot_challenge
-  - intent: deny
-  - action: utter_iamnotabot
-
-- story: Manage bot challenge yes no greet
-  steps:
-  - intent: bot_challenge
-  - action: utter_bot_challenge
-  - intent: affirm
-  - action: utter_iamabot
-
-- story: Manage bot challenge no no greet
-  steps:
-  - intent: bot_challenge
-  - action: utter_bot_challenge
-  - intent: deny
-  - action: utter_iamnotabot
-  
+# - story: happy path
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_great
+#   - action: utter_happy

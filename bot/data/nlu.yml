@@ -1,7 +1,7 @@
 version: "3.1"
 
 nlu:
-- intent: greet
+- intent: intent_saluto
   examples: |
     - Hey
     - Ciao
@@ -13,53 +13,196 @@ nlu:
     - Buon pomeriggio 
     - Ciao caro
 
-- intent: goodbye
+- intent: intent_conferma
   examples: |
-    - Ciao, alla prossima
-    - Ciao a presto
-    - A presto
-    - Buona giornata
-    - Buona serata
-    - Arrivederci
-    - A presto
-    - Ci vediamo 
-    - Alla prossima
-    - Grazie mille, a presto
-    - Grazie, a presto
-    - Ciao e grazie
-
-- intent: affirm
-  examples: |
-    - si
-    - certo
-    - certamente
-    - sicuro
-    - sembra buono
-    - mi sembra fattibile
-    - perfetto
+    - Si
+    - Perfetto
     - ok
-    - ok, grazie
-    - assolutamente si
     - va bene
+    - va benissimo
 
-- intent: deny
+- intent: intent_annulla
   examples: |
-    - no
-    - non va bene
-    - meglio di no
-    - non credo
-    - non credo
-    - assolutamente no
+    - No
+    - Non va bene
+    - devo annullare
+    - annulla
+    - non mi piace per niente
 
-- intent: bot_challenge
+- intent: intent_prenotare
   examples: |
-    - Sei un bot?
-    - Sei umano?
-    - sto parlando con un bot?
-    - sto parlando con un uomo?
-    - sto parlando con una persona?
-    - sto parlando con una persona umana?
-    - sto parlando con una persona umana o un bot?
-    - sto parlando con una persona umana o un robot?
-    - sei un robot?
-    - sei un uomo?
+    - Vorrei fare un [Taglio](prestazione)
+    - dovrei fare uno [Shampoo](prestazione)
+    - devo solo [tagliare](prestazione) la [Barba](prestazione)
+    - dovrei [accorciare](prestazione) i capelli.
+    - devo [fare](prestazione) la barba.
+    - devo [tagliare](prestazione) i capelli.
+    - quando hai posto per [tagliarmi](prestazione) i capelli?
+    - hai un posto per [tagliarmi](prestazione) i capelli?
+
+- intent: intent_sceglie_giorno
+  examples: |
+    - [Lunedì](giorno) andrebbe bene
+    - [Martedì](giorno) sarebbe perfetto
+    - direi che [mercoledì](giorno) va benissimo
+    - Ci saresti [Giovedì](giorno)?
+    - [Venerdì](giorno) è il top
+
+- intent: intent_sceglie_ora
+  examples: |
+    - Va bene alle [9:00](ora)
+    - Alle [10:00](ora) è meglio
+    - Va benissimo per le [10:30](ora)
+    - Alle [11:30] è perfetto
+
+- intent: intent_setta_nome
+  examples: |
+    - Mi chiamo [Marco](nome)
+    - sono [Lorenzo D'Agostino](nome)
+    - [Lorenza](nome)
+    - scrivi pure [Franco](nome)
+    - Il mio nome è [Raffaella](nome)
+
+- intent: intent_setta_recapito
+  examples: |
+    - Puoi chiamarmi al [3453322099](recapito)
+    - [3453322099](recapito)
+    - puoi scrivermi a [lorenzo@gmail.com](recapito)
+    - ti lascio la mail [concubino@salto.it](recapito)
+
+- intent: intent_perche_me_lo_chiedi
+  examples: |
+    - Perchè vuoi saperelo?
+    - cosa devi farci?
+    - perchè vuoi sapere come mi chiamo?
+    - perchè?
+    - non ti interessa.
+    - che cosa?
+    - per cosa?
+    - a cosa ti serve?
+  
+- lookup: prestazione
+  examples: |
+    - taglio
+    - shampoo
+    - tagliare
+    - accorciare
+    - fare
+    - aggiustare
+    
+- lookup: giorno
+  examples: |
+    - Lunedì
+    - Martedì
+    - Mercoledì
+    - Giovedì
+    - Venerdì
+    - Sabato
+    - Domenica
+
+- lookup: ora
+  examples: |
+    - 9:00
+    - 9
+    - 9:30
+    - 9 e mezza
+    - nove e mezza
+    - 10:00
+    - 10
+    - 10:30
+    - dieci e mezza
+    - 10 e 30
+    - 11
+    - 11:30
+    - 11 e mezza
+    - 11 e 30
+    - 12
+    - 12:30
+    - 12 e mezza
+    - 12 e 30
+    - 13
+    - 13:30
+    - 13 e mezza
+    - 13 e 30
+
+- lookup: nome
+  examples: |
+    - marco
+    - lorenzo
+    - lorenza
+    - franco
+    - raffaella
+    - marco d'agostino
+    - lorenzo d'agostino
+    - lorenza d'agostino
+    - franco d'agostino
+    - raffaella di gregorio
+    - miguel
+    - alberto
+    - lorena
+    - cristina
+    - maria
+    - jeremy
+    - jeremie
+    - christopher
+    - Calcifer il demone del fuoco
+
+- lookup: recapito
+  examples: |
+    - compagnonipaolo95@gmail.com
+    - segreteria@univpm.it
+    - presidenza@univpm.it
+    - maltenwerth@hotmail.com
+    - scorwin@jacobson.info
+    - tkulas@yahoo.com
+    - urban19@stokes.org
+    - kailee10@gmail.com
+    - amurphy@hotmail.com
+    - bauch.rylee@yahoo.com
+    - elva57@dickinson.org
+    - ari79@schuppe.com
+    - pearlie00@hotmail.com
+    - garfield58@anderson.com
+    - agreenholt@greenfelder.com
+    - vhowe@rohan.com
+    - geraldine65@howe.com
+    - hodkiewicz.florine@hotmail.com
+    - keith.beer@yahoo.com
+    - jerel.ebert@stracke.biz
+    - roman.cartwright@blick.com
+    - kolby74@gmail.com
+    - goodwin.kaitlyn@yahoo.com
+    - huels.alejandrin@dare.org
+    - al.block@gmail.com
+    - stevie79@hotmail.com
+    - monserrate.hintz@yahoo.com
+    - alysa99@gmail.com
+    - scottie34@hotmail.com
+    - rsatterfield@lind.com
+    - hintz.mellie@erdman.com
+    - sid51@skiles.biz
+    - walter.florence@gmail.com
+    - albert44@larson.net
+    - leuschke.leora@gmail.com
+    - lester62@keeling.com
+    - ruecker.pamela@hotmail.com
+    - yesenia.wyman@donnelly.com
+    - vblanda@hotmail.com
+    - orin82@gmail.com
+    - beatty.peter@eichmann.info
+    - name.buckridge@hotmail.com
+    - eve22@yahoo.com
+    - lakin.trisha@eichmann.com
+    - alisha.frami@moen.com
+    - rreichel@hotmail.com
+    - tara13@crooks.com
+    - boyer.brionna@gmail.com
+    - devin53@lubowitz.com
+    - brock.turner@hotmail.com
+    - nikolaus.furman@langosh.org
+    - preston50@gmail.com
+    - dkris@douglas.info
+
+- regex: recapito # email o numero di telefono  - ^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$
+  examples: |
+    - ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$

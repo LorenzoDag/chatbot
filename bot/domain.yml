@@ -1,13 +1,86 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - bot_challenge
+  - intent_saluto
+  - intent_prenotare
+  - intent_conferma
+  - intent_annulla
+  - intent_sceglie_giorno
+  - intent_sceglie_ora
+  - intent_setta_nome
+  - intent_setta_recapito
+  - intent_perche_me_lo_chiedi
+
+entities:
+  - prestazione # Taglio, Shampoo, Barba ...
+  - giorno # Lunedi, Martedi, ...
+  - ora # Ora
+  - nome
+  - recapito
+
+forms:
+  form_prenotatione:
+    required_slots:
+      - giorno
+      - ora
+      - nome
+      - recapito
+
+slots:
+  prestazione:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: prestazione
+  giorno:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: giorno
+  ora:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: ora
+  nome:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: nome
+  recapito:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: recapito
 
 responses:
+  utter_saluto:
+    - text: Ciao, come posso aiutarti?
+    - text: Ciao caro, come posso esserti utile?
+  
+  utter_goodbye:
+    - text: Grazie, ci vediamo!
+  
+  utter_ask_nome:
+    - text: Perfetto, come ti chiami?
+    - text: Ok, mi lasciamo il tuo nome?
+
+  utter_ask_recapito:
+    - text: Ok, mi lasci gentilmente un recapito mail o telefono?
+    - text: Ok, mi lasci una mail o un numero di telefono?
+
+  utter_mi_serve:
+    - condition:
+      - type: slot
+        name: requested_slot
+        value: recapito
+      text: Il tuo recapito non verrà utilizzato per scopi promozionali, ne ho comunque bisogno per contattarti in caso di comunicazioni, sai com'è, con il covid...
+    - condition:
+      - type: slot
+        name: requested_slot
+        value: nome
+      text: Se non avessi un nome di riferimento, {giorno} alle {ora} potrebbe presentarsi chiunque e rubarti il posto.
+
   utter_fallback:
     - text: "Perdonami ma mi pagano per prendere appuntamenti, come posso esserti utile?"
     - text: "Sono pagato per prendere appuntamenti, come posso esserti utile?"
@@ -20,19 +93,8 @@ responses:
       - title: "Sì"
         payload: "/affirm"
       - title: "No"
-        payload: "/deny"        
-
-  utter_greet:
-  - text: "Ciao, dimmi pure."
-  - text: "Hey, come va?"
-  - text: "Ciao, come posso aiutarti?"
-
-  utter_goodbye:
-  - text: "Ciao, alla prossima!"
-  - text: "Ciao, a presto!"
-  - text: "Arrivederci."
-  - text: "A presto!"
-
+        payload: "/deny" 
+        
   utter_iamabot:
   - text: "Ebbene si, sono un bot sviluppato da Davide, Donato e Lorenzo. Come posso esserti utile?"
   - text: "Sono un bot, sono un robot, sono una macchina, sono una macchina virtuale. Come posso esserti utile?"
@@ -42,6 +104,14 @@ responses:
   - text: "No, non sono un bot, mi chiamo Franco. Come posso aiutarti?"
   - text: "Assolutamente no, non sono un bot. Come posso aiutarti?"
   - text: "No, sono umano, come posso esserti utile?"
+
+actions:
+- validate_form_prenotatione
+- action_ask_giorno
+- action_ask_ora
+- action_appointment_recap
+- action_reset
+- action_goodbye_confirmed
 
 session_config:
   session_expiration_time: 60

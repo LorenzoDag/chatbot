@@ -1,12 +1,57 @@
 version: "3.1"
 
 rules:
-- rule: Say goodbye anytime the user says goodbye
+- rule: saluto
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: intent_saluto
+  - action: utter_saluto
 
-- rule: Rispondi che puoi solo prendere appuntamenti quando l'utente va fuori tema
+- rule: attiva form prenotatione
   steps:
-  - intent: nlu_fallback
-  - action: utter_fallback
+  - intent: intent_prenotare
+  - action: form_prenotatione
+  - active_loop: form_prenotatione
+
+- rule: submit form ordine
+  condition:
+  - active_loop: form_prenotatione
+  steps:
+  - action: form_prenotatione
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_appointment_recap
+  - intent: intent_conferma
+  - action: action_goodbye_confirmed
+  - action: action_reset
+
+- rule: annulla form ordine
+  condition:
+  - active_loop: form_prenotatione
+  steps:
+  - action: form_prenotatione
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_appointment_recap
+  - intent: intent_annulla
+  - action: action_reset
+  - action: utter_saluto
+
+- rule: l'utente non vuole dare informazioni
+  condition:
+  - active_loop: form_prenotatione
+  steps:
+  - intent: intent_perche_me_lo_chiedi
+  - action: utter_mi_serve
+  - action: form_prenotatione
+  - active_loop: form_prenotatione
+
+- rule: l'utente non vuole dare informazioni con 
+  condition:
+  - active_loop: form_prenotatione
+  steps:
+  - intent: intent_annulla
+  - action: utter_mi_serve
+  - action: form_prenotatione
+  - active_loop: form_prenotatione
