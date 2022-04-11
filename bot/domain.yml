@@ -76,6 +76,7 @@ responses:
 
   utter_mi_serve:
     - condition:
+
       - type: slot
         name: requested_slot
         value: recapito
