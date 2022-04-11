@@ -36,7 +36,7 @@ rules:
   - action: action_appointment_recap
   - intent: intent_annulla
   - action: action_reset
-  - action: utter_saluto
+  - action: utter_handle_deny_appointment
 
 - rule: l'utente non vuole dare informazioni
   condition:
@@ -47,7 +47,7 @@ rules:
   - action: form_prenotatione
   - active_loop: form_prenotatione
 
-- rule: l'utente non vuole dare informazioni con 
+- rule: l'utente non vuole dare informazioni ma usa frasi interpretate come intent_annulla
   condition:
   - active_loop: form_prenotatione
   steps:

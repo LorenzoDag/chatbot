@@ -81,7 +81,7 @@ nlu:
     - per cosa?
     - a cosa ti serve?
 
-- intent: bot_challenge
+- intent: intent_bot_challenge
   examples: |
     - Sei un bot?
     - Sei umano?

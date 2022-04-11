@@ -62,6 +62,10 @@ responses:
   utter_goodbye:
     - text: Grazie, ci vediamo!
   
+  utter_handle_deny_appointment:
+    - text: Per qualunque cosa sono qui.
+    - text: Ok, sono qui se hai bisogno.
+  
   utter_ask_nome:
     - text: Perfetto, come ti chiami?
     - text: Ok, mi lasciamo il tuo nome?
@@ -92,9 +96,9 @@ responses:
     - text: "Dipende, sai cos'è il test di Turing?"
       buttons:
       - title: "Sì"
-        payload: "/affirm"
+        payload: "/intent_conferma"
       - title: "No"
-        payload: "/deny" 
+        payload: "/intent_annulla" 
         
   utter_iamabot:
   - text: "Ebbene si, sono un bot sviluppato da Davide, Donato e Lorenzo. Come posso esserti utile?"
