@@ -18,6 +18,7 @@ entities:
   - ora # Ora
   - nome
   - recapito
+  - disponibilità_oraria
 
 forms:
   form_prenotatione:
@@ -53,6 +54,11 @@ slots:
     mappings:
     - type: from_entity
       entity: recapito
+  disponibilità_oraria:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
 
 responses:
   utter_saluto:
