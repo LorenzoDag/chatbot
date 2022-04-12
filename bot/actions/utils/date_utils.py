@@ -1,4 +1,4 @@
-from ast import List
+from typing import List
 import datetime
 days_code = {
     "LUN": 0,
