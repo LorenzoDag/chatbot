@@ -14,7 +14,7 @@ def next_weekday(d: datetime.date, weekday):
         days_ahead += 7
     return d + datetime.timedelta(days_ahead)
 
-def get_free_slots(hours: List[datetime.datetime], appointments: List[List[datetime.datetime]], duration=datetime.timedelta(hours=1)) -> List[str]:
+def get_free_slots(hours: List[datetime.datetime], appointments: List[List[datetime.datetime]], duration=datetime.timedelta(minutes=30)) -> List[str]:
     # https://stackoverflow.com/questions/10702224/python-algorithm-find-time-slots
     slots = sorted([(hours[0], hours[0])] + appointments + [(hours[1], hours[1])])
     free = []
