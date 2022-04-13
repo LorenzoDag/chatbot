@@ -124,6 +124,7 @@ actions:
 - action_appointment_recap
 - action_reset
 - action_goodbye_confirmed
+- action_update_appointment
 
 session_config:
   session_expiration_time: 60
