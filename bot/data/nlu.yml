@@ -39,6 +39,7 @@ nlu:
     - devo [tagliare](prestazione) i capelli.
     - quando hai posto per [tagliarmi](prestazione) i capelli?
     - hai un posto per [tagliarmi](prestazione) i capelli?
+    - vorrei prendere un [appuntamento](prestazione) ?
 
 - intent: intent_sceglie_giorno
   examples: |
@@ -55,6 +56,7 @@ nlu:
     - Va benissimo per le [10:30](ora)
     - Alle [11:30] è perfetto
 
+
 - intent: intent_setta_nome
   examples: |
     - Mi chiamo [Marco](nome)
@@ -62,6 +64,8 @@ nlu:
     - [Lorenza](nome)
     - scrivi pure [Franco](nome)
     - Il mio nome è [Raffaella](nome)
+
+
 
 - intent: intent_setta_recapito
   examples: |
@@ -102,6 +106,10 @@ nlu:
     - accorciare
     - fare
     - aggiustare
+    - rasare
+    - lavare
+    - barba
+
     
 - lookup: giorno
   examples: |
@@ -138,28 +146,9 @@ nlu:
     - 13 e mezza
     - 13 e 30
 
-- lookup: nome
-  examples: |
-    - marco
-    - lorenzo
-    - lorenza
-    - franco
-    - raffaella
-    - marco d'agostino
-    - lorenzo d'agostino
-    - lorenza d'agostino
-    - franco d'agostino
-    - raffaella di gregorio
-    - miguel
-    - alberto
-    - lorena
-    - cristina
-    - maria
-    - jeremy
-    - jeremie
-    - christopher
-    - Calcifer il demone del fuoco
 
+    
+    
 - lookup: recapito
   examples: |
     - compagnonipaolo95@gmail.com
@@ -219,3 +208,7 @@ nlu:
 - regex: recapito # email o numero di telefono  - ^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$
   examples: |
     - ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
+    - \d{10, 20}
+
+
+

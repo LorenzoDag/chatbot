@@ -47,6 +47,10 @@ class ActionCercaPosto(FormValidationAction):
             tracker: Tracker,
             domain: DomainDict,
         ) -> Dict[Text, Any]:
+
+        if(len(tracker.get_slot("nome")) < 3 and tracker.get_slot("nome") == None):
+            dispatcher.utter_message(text = f"Mi dispiace ma {slot_value} non è un nome valido. Che nome preferisci?")
+            return {"nome": None}
         
         return {"nome": slot_value}
 
