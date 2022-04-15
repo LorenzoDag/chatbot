@@ -11,6 +11,13 @@ intents:
   - intent_setta_recapito
   - intent_perche_me_lo_chiedi
   - intent_bot_challenge
+  - intent_update_nome
+  - intent_update_recapito
+  - intent_update_giorno
+  - intent_update_ora
+  - intent_modifica
+
+
 
 entities:
   - prestazione # Taglio, Shampoo, Barba ...
@@ -21,7 +28,7 @@ entities:
   - disponibilità_oraria
 
 forms:
-  form_prenotatione:
+  form_prenotazione:
     required_slots:
       - giorno
       - ora
@@ -118,13 +125,17 @@ responses:
   - text: "No, sono umano, come posso esserti utile?"
 
 actions:
-- validate_form_prenotatione
+- validate_form_prenotazione
 - action_ask_giorno
 - action_ask_ora
 - action_appointment_recap
 - action_reset
 - action_goodbye_confirmed
 - action_update_appointment
+- action_reset_nome
+- action_reset_giorno
+- action_reset_recapito
+- action_reset_ora
 
 session_config:
   session_expiration_time: 60

@@ -9,14 +9,14 @@ rules:
 - rule: attiva form prenotatione
   steps:
   - intent: intent_prenotare
-  - action: form_prenotatione
-  - active_loop: form_prenotatione
+  - action: form_prenotazione
+  - active_loop: form_prenotazione
 
 - rule: submit form ordine
   condition:
-  - active_loop: form_prenotatione
+  - active_loop: form_prenotazione
   steps:
-  - action: form_prenotatione
+  - action: form_prenotazione
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
@@ -27,9 +27,9 @@ rules:
 
 - rule: annulla form ordine
   condition:
-  - active_loop: form_prenotatione
+  - active_loop: form_prenotazione
   steps:
-  - action: form_prenotatione
+  - action: form_prenotazione
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
@@ -38,29 +38,70 @@ rules:
   - action: action_reset
   - action: utter_handle_deny_appointment
 
+- rule: update form ordine
+  condition:
+  - active_loop: form_prenotazione
+  steps:
+  - action: form_prenotazione
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_appointment_recap
+  - intent: intent_modifica
+  - action: action_update_appointment
+  
+- rule: update nome
+  steps:
+  - intent: intent_update_nome
+  - action: action_reset_nome
+  - action: form_prenotazione
+  - active_loop: form_prenotazione
+
+- rule: update giorno
+  steps:
+  - intent: intent_update_giorno
+  - action: action_reset_giorno
+  - action: form_prenotazione
+  - active_loop: form_prenotazione
+
+- rule: update recapito
+  steps:
+  - intent: intent_update_recapito
+  - action: action_reset_recapito
+  - action: form_prenotazione
+  - active_loop: form_prenotazione
+
+- rule: update ora
+  steps:
+  - intent: intent_update_ora
+  - action: action_reset_ora
+  - action: form_prenotazione
+  - active_loop: form_prenotazione
+
+
 - rule: l'utente non vuole dare informazioni
   condition:
-  - active_loop: form_prenotatione
+  - active_loop: form_prenotazione
   steps:
   - intent: intent_perche_me_lo_chiedi
   - action: utter_mi_serve
-  - action: form_prenotatione
-  - active_loop: form_prenotatione
+  - action: form_prenotazione
+  - active_loop: form_prenotazione
 
 - rule: l'utente non vuole dare informazioni ma usa frasi interpretate come intent_annulla
   condition:
-  - active_loop: form_prenotatione
+  - active_loop: form_prenotazione
   steps:
   - intent: intent_annulla
   - action: utter_mi_serve
-  - action: form_prenotatione
-  - active_loop: form_prenotatione
+  - action: form_prenotazione
+  - active_loop: form_prenotazione
 
 - rule: l'utente non vuole dare informazioni ma usa frasi interpretate come intent_annulla
   condition:
-  - active_loop: form_prenotatione
+  - active_loop: form_prenotazione
   steps:
   - intent: intent_conferma
   - action: utter_mi_serve
-  - action: form_prenotatione
-  - active_loop: form_prenotatione
+  - action: form_prenotazione
+  - active_loop: form_prenotazione

@@ -32,6 +32,8 @@ class ActionUpdateAppointement(Action):
         def choose_update(self, tracker: Tracker) -> List[Dict[Text, Any]]:
             l = ["nome", "recapito", "ora", "giorno"]
             return [{"title": choise, "payload": f"/intent_update_{choise}"} for choise in l]
+
+    
             
 
         

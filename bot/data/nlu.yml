@@ -13,6 +13,32 @@ nlu:
     - Buon pomeriggio 
     - Ciao caro
 
+- intent: intent_modifica
+  examples: |
+    - modifica
+    - voglio modifica
+
+- intent: intent_update_nome
+  examples: |
+    - voglio modificare il nome
+    - modifica nome
+
+- intent: intent_update_recapito
+  examples: |
+    - voglio modificare il recapito
+    - modifica recapito
+
+- intent: intent_update_ora
+  examples: |
+    - voglio modificare l'ora
+    - modifica ora
+
+- intent: intent_update_giorno
+  examples: |
+    - voglio modificare il giorno
+    - modifica giorno
+
+
 - intent: intent_conferma
   examples: |
     - Si

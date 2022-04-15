@@ -12,7 +12,7 @@ from email_validator import validate_email, EmailNotValidError
 class ActionCercaPosto(FormValidationAction):
 
     def name(self) -> Text:
-        return "validate_form_prenotatione"
+        return "validate_form_prenotazione"
 
     def validate_giorno(self,
             slot_value: Any,

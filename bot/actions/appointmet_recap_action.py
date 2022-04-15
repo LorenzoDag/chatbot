@@ -34,5 +34,6 @@ class AppointmentRecapAction(Action):
         def get_buttons(self) -> List[Dict[Text, Any]]:
             return [
                 {"title": "Confermo", "payload": "/intent_conferma"},
-                {"title": "Annulla", "payload": "/intent_annulla"}           
+                {"title": "Annulla", "payload": "/intent_annulla"},
+                {"title": "Modifica", "payload": "/intent_modifica"}          
             ]
