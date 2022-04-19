@@ -34,6 +34,11 @@ forms:
       - ora
       - nome
       - recapito
+  form_modifica_prenotazione:
+    required_slots:
+      - nome
+      - giorno
+      - ora
 
 slots:
   prestazione:
@@ -81,7 +86,7 @@ responses:
   
   utter_ask_nome:
     - text: Perfetto, come ti chiami?
-    - text: Ok, mi lasciamo il tuo nome?
+    - text: Ok, mi lasci il tuo nome?
 
   utter_ask_recapito:
     - text: Ok, mi lasci gentilmente un recapito mail o telefono?
@@ -89,7 +94,6 @@ responses:
 
   utter_mi_serve:
     - condition:
-
       - type: slot
         name: requested_slot
         value: recapito
@@ -136,6 +140,8 @@ actions:
 - action_reset_giorno
 - action_reset_recapito
 - action_reset_ora
+- action_delete_appointment
+- action_appointment_modify
 
 session_config:
   session_expiration_time: 60

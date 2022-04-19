@@ -78,7 +78,6 @@ rules:
   - action: form_prenotazione
   - active_loop: form_prenotazione
 
-
 - rule: l'utente non vuole dare informazioni
   condition:
   - active_loop: form_prenotazione
@@ -97,7 +96,7 @@ rules:
   - action: form_prenotazione
   - active_loop: form_prenotazione
 
-- rule: l'utente non vuole dare informazioni ma usa frasi interpretate come intent_annulla
+- rule: l'utente non vuole dare informazioni ma usa frasi interpretate come intent_conferma
   condition:
   - active_loop: form_prenotazione
   steps:
@@ -105,3 +104,34 @@ rules:
   - action: utter_mi_serve
   - action: form_prenotazione
   - active_loop: form_prenotazione
+
+- rule: modifica appuntamento -> avvia form modifica
+  steps:
+  - intent: intent_modifica
+  - action: form_modifica_prenotazione
+  - active_loop: form_modifica_prenotazione
+
+- rule: submit form modifica
+  condition:
+  - active_loop: form_modifica_prenotazione
+  steps:
+  - action: form_modifica_prenotazione
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_appointment_modify
+  - intent: intent_modifica
+  - action: action_delete_appointment
+  - action: action_update_appointment
+
+- rule: annulla appuntamento
+  condition:
+  - active_loop: form_modifica_prenotazione
+  steps:
+  - action: form_modifica_prenotazione
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_appointment_modify
+  - intent: intent_annulla
+  - action: action_delete_appointment

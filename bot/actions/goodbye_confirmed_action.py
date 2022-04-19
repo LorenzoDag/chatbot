@@ -42,4 +42,3 @@ class GoodbyeConfirmAction(Action):
         def save_appointment(self, tracker: Tracker):
             app = Appointment(tracker.get_slot('giorno'), tracker.get_slot('ora'), "30", tracker.get_slot('nome'), tracker.get_slot('recapito'))
             appointments.instance().create(app)
-            print("OK")

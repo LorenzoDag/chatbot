@@ -4,6 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import AllSlotsReset
 from rasa_sdk.events import SlotSet
+from actions import appointments
 
 
 class ActionReset(Action):
@@ -15,6 +16,7 @@ class ActionReset(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        appointments.instance().restore_last()
         return[AllSlotsReset()]
 
 class ResetName(Action):

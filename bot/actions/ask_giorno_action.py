@@ -22,8 +22,13 @@ class ActionAskGiorno(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        if tracker.active_loop.get("name") == "form_modifica_prenotazione":    
+            msg = "Che giorno avevi apuntamento?"
+        else:
+            msg = "Che giorno vuoi prenotare?"
+
         giorni = [f"{giorno} {next_weekday(date.today(), day_code)}" for giorno, day_code in zip(self.giorni, days_code.values())]
-        dispatcher.utter_message(text="Ok, che giorno preferisci?", buttons = ActionAskGiorno.Buttons().get_buttons(giorni))
+        dispatcher.utter_message(text=msg, buttons = ActionAskGiorno.Buttons().get_buttons(giorni))
 
         return []
 

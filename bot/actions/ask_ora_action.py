@@ -2,7 +2,7 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet
+from rasa_sdk.events import SlotSet, ActiveLoop
 import pandas as pd
 
 from actions import appointments
@@ -25,11 +25,29 @@ class ActionAskOra(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         giorno_scelto = tracker.get_slot("giorno")
-
+        
         orari_disponibili = self.get_disponibilità_oraria(str(giorno_scelto).lower())
         disponibilita_orarie =  ActionAskOra.Buttons().get_buttons(orari_disponibili)
+        
+        if tracker.active_loop.get("name") == "form_modifica_prenotazione":
+            nome = tracker.get_slot("nome")
+            giorno = tracker.get_slot("giorno")
+            apps = appointments.instance().find(nome, giorno)
+            lenapps = len(apps)
+            if lenapps == 0:
+                dispatcher.utter_message(text = f"Non ho appuntamenti per {nome} {giorno}")
+                return [SlotSet("giorno", None)]
+            elif lenapps == 1:
+                appuntamento = apps[0]
+                ora = appuntamento.get_hour()
+                dispatcher.utter_message(text = f"{nome}, {giorno} alle {ora}.")
+                return [SlotSet("ora", ora), SlotSet("giorno", appuntamento.get_date()), SlotSet("recapito", appuntamento.get_contact()), ActiveLoop(None)]
+            else:
+                butts = ActionAskOra.Buttons().get_buttons([app.get_hour() for app in apps])
+                dispatcher.utter_message(text = f"Ho più appuntamenti per {nome} {giorno}, a che ora dovevi venire?", buttons = butts)
+                return []
+                
         dispatcher.utter_message(text = f"{giorno_scelto} avrei posto alle", buttons = disponibilita_orarie)
-
         return [SlotSet(key = "disponibilità_oraria", value = orari_disponibili)]
 
     def get_disponibilità_oraria(self, giorno: str) -> List[str]:

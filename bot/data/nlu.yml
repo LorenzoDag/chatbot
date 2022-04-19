@@ -15,8 +15,11 @@ nlu:
 
 - intent: intent_modifica
   examples: |
-    - modifica
-    - voglio modifica
+    - sono [lorenzo](nome), ho preso appuntamento [lunedì](giorno) alle [10:00](ora) ma ho avuto un contrattempo. Posso spostarlo?
+    - avevo appuntamento [martedì](giorno) alle [11](ora) ma vorrei modificalo.
+    - purtroppo non posso esserci [mercoledì](giorno) alle [12](ora), è un problema se lo modifico?
+    - ciao, avevo appuntamento a nome [davide](nome) per [giovedì](giorno) alle [13](ora). Purtroppo non posso esserci, posso spostarlo?
+    - vorrei spostare l'appuntamento di [venerdì](giorno) alle [14](ora) a nome [donato](nome)
 
 - intent: intent_update_nome
   examples: |
@@ -37,7 +40,6 @@ nlu:
   examples: |
     - voglio modificare il giorno
     - modifica giorno
-
 
 - intent: intent_conferma
   examples: |
