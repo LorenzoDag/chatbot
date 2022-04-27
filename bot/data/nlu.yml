@@ -20,6 +20,14 @@ nlu:
     - purtroppo non posso esserci [mercoledì](giorno) alle [12](ora), è un problema se lo modifico?
     - ciao, avevo appuntamento a nome [davide](nome) per [giovedì](giorno) alle [13](ora). Purtroppo non posso esserci, posso spostarlo?
     - vorrei spostare l'appuntamento di [venerdì](giorno) alle [14](ora) a nome [donato](nome)
+    - non posso venire
+    - devo spostare un appuntamento
+    - devo disdire un appuntamento
+    - dovrei cancellare un appuntamento
+    - posso cancellare un appuntamento?
+    - posso cambiare il giorno?
+    - posso cambiare l'ora?
+    - non ci sono [lunedi](giorno).
 
 - intent: intent_update_nome
   examples: |
@@ -138,17 +146,6 @@ nlu:
     - lavare
     - barba
 
-    
-- lookup: giorno
-  examples: |
-    - Lunedì
-    - Martedì
-    - Mercoledì
-    - Giovedì
-    - Venerdì
-    - Sabato
-    - Domenica
-
 - lookup: ora
   examples: |
     - 9:00
@@ -174,9 +171,6 @@ nlu:
     - 13 e mezza
     - 13 e 30
 
-
-    
-    
 - lookup: recapito
   examples: |
     - compagnonipaolo95@gmail.com

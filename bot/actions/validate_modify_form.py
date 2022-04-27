@@ -25,7 +25,7 @@ class ActionCercaPosto(FormValidationAction):
             if day in slot_value.lower():
                 return {"giorno": slot_value}
         else:
-            dispatcher.utter_message(text = f"Mi dispiace ma {slot_value} non lavoriamo. Che giorno preferisci?")
+            dispatcher.utter_message(text = f"Mi dispiace ma {slot_value} non lavoriamo. Quando avevi appuntamento?")
             return {"giorno": None}
     
     def validate_ora(self,
@@ -38,7 +38,7 @@ class ActionCercaPosto(FormValidationAction):
         if slot_value.lower() in tracker.get_slot("disponibilità_oraria"): # Bisogna validare di nuovo l'orario al fine di evitare che qualcuno scriva cose a cazzo
             return {"ora": slot_value}
         else:
-            dispatcher.utter_message(text = f"Mi dispiace ma {slot_value} non è un orario valido. Che orario preferisci?")
+            dispatcher.utter_message(text = f"Mi dispiace ma {slot_value} non è un orario valido. A che ora avevi appuntamento?")
             return {"ora": None}
 
     def validate_nome(self,
