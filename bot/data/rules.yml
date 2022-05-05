@@ -1,10 +1,6 @@
 version: "3.1"
 
 rules:
-- rule: saluto
-  steps:
-  - intent: intent_saluto
-  - action: utter_saluto
 
 - rule: attiva form prenotatione
   steps:
@@ -135,3 +131,8 @@ rules:
   - action: action_appointment_modify
   - intent: intent_annulla
   - action: action_delete_appointment
+
+- rule: fallback
+  steps:
+  - intent: nlu_fallback
+  - action: utter_fallback

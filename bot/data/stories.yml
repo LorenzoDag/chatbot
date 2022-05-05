@@ -7,6 +7,37 @@ stories:
   - action: utter_saluto
   - checkpoint: checkpoint_saluto
 
+- story: come stai dopo saluto
+  steps:
+  - checkpoint: checkpoint_saluto
+  - intent: intent_come_stai
+  - action: utter_come_stai
+  - checkpoint: checkpoint_come_stai
+
+- story: come stai
+  steps:
+  - intent: intent_come_stai
+  - action: utter_come_stai
+  - checkpoint: checkpoint_come_stai_no_saluto
+
+- story: happy path saluto
+  steps:
+  - checkpoint: checkpoint_come_stai
+  - checkpoint: checkpoint_come_stai_no_saluto
+  - or:  
+    - intent: intent_sto_bene
+    - intent: intent_conferma 
+  - action: utter_grande
+  - action: utter_come_ti_aiuto
+
+- story: sad path saluto
+  steps:
+  - checkpoint: checkpoint_come_stai
+  - checkpoint: checkpoint_come_stai_no_saluto
+  - intent: intent_sto_male
+  - action: utter_mi_dispiace
+  - action: utter_come_ti_aiuto
+
 - story: bot challenge dopo saluto
   steps:
   - checkpoint: checkpoint_saluto
@@ -14,9 +45,16 @@ stories:
   - action: utter_bot_challenge
   - checkpoint: checkpoint_bot_challenge
 
+- story: bot challenge
+  steps:
+  - intent: intent_bot_challenge
+  - action: utter_bot_challenge
+  - checkpoint: checkpoint_bot_challenge_no_saluto
+
 - story: handle bot challenge affirm
   steps:
   - checkpoint: checkpoint_bot_challenge
+  - checkpoint: checkpoint_bot_challenge_no_saluto
   - intent: intent_conferma
   - action: utter_iamabot
 

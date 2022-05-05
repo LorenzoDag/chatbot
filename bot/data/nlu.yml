@@ -1,6 +1,42 @@
 version: "3.1"
 
 nlu:
+- intent: intent_come_stai
+  examples: |
+    - come stai
+    - come stai?
+    - come va
+    - come va?
+    - tutto bene?
+    - come ti trovo?
+
+- intent: intent_sto_bene
+  examples: |
+    - tutto bene
+    - tutto bene grazie
+    - bene
+    - bene grazie
+    - non ci lamentiamo
+    - non ci lamentiamo grazie
+    - non ci lamentiamo, grazie
+    - va tutto per il meglio
+    - va tutto per il meglio grazie
+    - alla grande
+    - alla grande grazie
+    - niente male
+
+- intent: intent_sto_male
+  examples: |
+    - potrebbe andare meglio
+    - uno schifo
+    - va tutto male
+    - non bene
+    - sono depresso
+    - non sto bene per niente
+    - malissimo
+    - non bene in realtà
+    - sto proprio male
+
 - intent: intent_saluto
   examples: |
     - Hey
@@ -100,8 +136,6 @@ nlu:
     - [Lorenza](nome)
     - scrivi pure [Franco](nome)
     - Il mio nome è [Raffaella](nome)
-
-
 
 - intent: intent_setta_recapito
   examples: |

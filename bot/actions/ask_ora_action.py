@@ -47,7 +47,7 @@ class ActionAskOra(Action):
                 dispatcher.utter_message(text = f"Ho più appuntamenti per {nome} {giorno}, a che ora dovevi venire?", buttons = butts)
                 return []
                 
-        dispatcher.utter_message(text = f"{giorno_scelto} avrei posto alle", buttons = disponibilita_orarie)
+        dispatcher.utter_message(text = f"{giorno_scelto} avrei posto alle", buttons = disponibilita_orarie, button_type="vertical")
         return [SlotSet(key = "disponibilità_oraria", value = orari_disponibili)]
 
     def get_disponibilità_oraria(self, giorno: str) -> List[str]:

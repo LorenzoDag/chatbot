@@ -35,7 +35,7 @@ class ActionCercaPosto(FormValidationAction):
             domain: DomainDict,
         ) -> Dict[Text, Any]:
         
-        if slot_value.lower() in tracker.get_slot("disponibilità_oraria"): # Bisogna validare di nuovo l'orario al fine di evitare che qualcuno scriva cose a cazzo
+        if slot_value.lower() in tracker.get_slot("disponibilità_oraria"): # Bisogna validare di nuovo l'orario al fine di evitare che qualcuno scriva cose a caso
             return {"ora": slot_value}
         else:
             dispatcher.utter_message(text = f"Mi dispiace ma {slot_value} non è un orario valido. Che orario preferisci?")

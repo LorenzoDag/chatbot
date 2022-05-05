@@ -16,8 +16,9 @@ intents:
   - intent_update_giorno
   - intent_update_ora
   - intent_modifica
-
-
+  - intent_come_stai
+  - intent_sto_bene
+  - intent_sto_male
 
 entities:
   - prestazione # Taglio, Shampoo, Barba ...
@@ -73,6 +74,19 @@ slots:
     - type: custom
 
 responses:
+  utter_come_stai:
+    - text: Alla grande, grazie. A te come va?
+    - text: Benissimo grazie, te invece? 
+  
+  utter_come_ti_aiuto:
+    - text: Come posso aiutarti?
+  
+  utter_grande:
+    - text: Alla grande (Y)
+
+  utter_mi_dispiace:
+    - text: Mi dispiace, taglia i capelli e vedrai che andrà meglio :D
+
   utter_saluto:
     - text: Ciao, come posso aiutarti?
     - text: Ciao caro, come posso esserti utile?
@@ -85,12 +99,12 @@ responses:
     - text: Ok, sono qui se hai bisogno.
   
   utter_ask_nome:
-    - text: Perfetto, come ti chiami?
-    - text: Ok, mi lasci il tuo nome?
+    - text: Come ti chiami?
+    - text: Mi lasci il tuo nome?
 
   utter_ask_recapito:
-    - text: Ok, mi lasci gentilmente un recapito mail o telefono?
-    - text: Ok, mi lasci una mail o un numero di telefono?
+    - text: Mi lasci gentilmente un recapito mail o telefono?
+    - text: Mi lasci una mail o un numero di telefono?
 
   utter_mi_serve:
     - condition:
@@ -113,10 +127,11 @@ responses:
   utter_bot_challenge:
     - text: "Dipende, sai cos'è il test di Turing?"
       buttons:
-      - title: "Sì"
-        payload: "/intent_conferma"
-      - title: "No"
-        payload: "/intent_annulla" 
+      - payload: "/intent_conferma"
+        title: "Si"
+      - payload: "/intent_annulla"
+        title: "No"
+      button_type: inline
         
   utter_iamabot:
   - text: "Ebbene si, sono un bot sviluppato da Davide, Donato e Lorenzo. Come posso esserti utile?"

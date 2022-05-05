@@ -28,7 +28,7 @@ class ActionAskGiorno(Action):
             msg = "Che giorno vuoi prenotare?"
 
         giorni = [f"{giorno} {next_weekday(date.today(), day_code)}" for giorno, day_code in zip(self.giorni, days_code.values())]
-        dispatcher.utter_message(text=msg, buttons = ActionAskGiorno.Buttons().get_buttons(giorni))
+        dispatcher.utter_message(text=msg, buttons = ActionAskGiorno.Buttons().get_buttons(giorni), button_type="vertical")
 
         return []
 
